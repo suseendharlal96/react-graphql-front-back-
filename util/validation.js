@@ -4,6 +4,7 @@ module.exports.validateSignupInput = (
   password,
   confirmPassword
 ) => {
+  console.log(username, email, password, confirmPassword);
   const errors = {};
   if (username.trim() === "") {
     errors.username = "username Must not be empty";
@@ -22,11 +23,11 @@ module.exports.validateSignupInput = (
   if (email.trim() === "") {
     errors.email = "email must not be empty";
   } else {
-    const regEx =
-      "/^([0-9a-zA-Z]([-.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+[a-zA-Z]{2,9})$/";
-    if (!email.match(regEx)) {
-      errors.email = "Not a valid email";
-    }
+    // const regEx =
+    //   "/^([0-9a-zA-Z]([-.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+[a-zA-Z]{2,9})$/";
+    // if (!regEx.match(email)) {
+    //   errors.email = "Not a valid email";
+    // }
   }
 
   return {

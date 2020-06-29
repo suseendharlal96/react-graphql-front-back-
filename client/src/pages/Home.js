@@ -11,7 +11,9 @@ const Home = () => {
 
   return (
     <Grid columns={3} divided>
-      <Grid.Row>Recent Posts</Grid.Row>
+      <Grid.Row>
+        <h2>Recent Posts</h2>
+      </Grid.Row>
       <Grid.Row>
         {loading ? (
           <h2>Loading posts...</h2>

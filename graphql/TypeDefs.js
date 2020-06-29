@@ -45,7 +45,7 @@ const typeDef = gql`
 
   type Mutation {
     signup(signupInput: SignupInput): User!
-    signin(username: String!, password: String!): User!
+    signin(email: String!, password: String!): User!
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
     postComment(postId: ID!, body: String!): Post!

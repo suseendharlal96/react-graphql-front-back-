@@ -7,21 +7,21 @@ module.exports.validateSignupInput = (
   console.log(username, email, password, confirmPassword);
   const errors = {};
   if (username.trim() === "") {
-    errors.username = "username Must not be empty";
+    errors.username = "Username must not be empty";
   }
 
   if (password.trim() === "") {
-    errors.password = "password Must not be empty";
+    errors.password = "Password must not be empty";
   }
 
   if (confirmPassword.trim() === "") {
-    errors.confirmPassword = "confirmPassword Must not be empty";
+    errors.confirmPassword = "Confirm Password must not be empty";
   } else if (password !== confirmPassword) {
     errors.confirmPassword = "Passwords do not match";
   }
 
   if (email.trim() === "") {
-    errors.email = "email must not be empty";
+    errors.email = "Email must not be empty";
   } else {
     // const regEx =
     //   "/^([0-9a-zA-Z]([-.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+[a-zA-Z]{2,9})$/";
@@ -36,14 +36,14 @@ module.exports.validateSignupInput = (
   };
 };
 
-module.exports.validateSigninInput = (username, password) => {
+module.exports.validateSigninInput = (email, password) => {
   const errors = {};
-  if (username.trim() === "") {
-    errors.username = "username Must not be empty";
+  if (email.trim() === "") {
+    errors.email = "Email must not be empty";
   }
 
   if (password.trim() === "") {
-    errors.password = "password Must not be empty";
+    errors.password = "Password must not be empty";
   }
 
   return {

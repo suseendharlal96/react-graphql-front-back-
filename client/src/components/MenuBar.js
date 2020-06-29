@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 
 const MenuBar = () => {
-  const [activeItem, setActiveItem] = useState("home");
+  const pathname = window.location.pathname;
+  const path = pathname === "/" ? "home" : pathname.substr(1);
 
-  const handleItemClick = (e,{ name }) => {
+  const [activeItem, setActiveItem] = useState(path);
+
+  const handleItemClick = (e, { name }) => {
     setActiveItem(name);
   };
 
@@ -28,15 +31,15 @@ const MenuBar = () => {
       />
       <Menu.Menu position="right">
         <Menu.Item
-          name="Login"
-          active={activeItem === "Login"}
+          name="login"
+          active={activeItem === "login"}
           onClick={handleItemClick}
           as={Link}
           to="/login"
         />
         <Menu.Item
-          name="Signup"
-          active={activeItem === "Signup"}
+          name="register"
+          active={activeItem === "register"}
           onClick={handleItemClick}
           as={Link}
           to="/register"

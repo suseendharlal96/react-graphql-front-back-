@@ -7,6 +7,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 import { AuthContext } from "../context/auth";
 import LikeButton from "../components/LikeButton";
+import DeleteButton from "../components/DeleteButton";
 
 const PostCard = (props) => {
   dayjs.extend(relativeTime);
@@ -50,13 +51,7 @@ const PostCard = (props) => {
           </Label>
         </Button>
         {context.user && context.user.username === props.post.username && (
-          <Icon
-            title="Delete Post"
-            style={{ float: "right", cursor: "pointer", marginTop: "10px" }}
-            onClick={() => console.log("del")}
-            color="red"
-            name="trash alternate"
-          />
+          <DeleteButton postId={props.post.id} />
         )}
       </Card.Content>
     </Card>

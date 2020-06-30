@@ -1,21 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Card, Icon, Label, Image, Button } from "semantic-ui-react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
+import { AuthContext } from "../context/auth";
+import LikeButton from "../components/LikeButton";
+
 const PostCard = (props) => {
   dayjs.extend(relativeTime);
 
-  const likePost=()=>{
+  const context = useContext(AuthContext);
 
-  }
+  const commentPost = () => {};
 
-  const commentPost=()=>{
-      
-  }
-  
   return (
     <Card fluid>
       <Card.Content>
@@ -31,19 +30,17 @@ const PostCard = (props) => {
         <Card.Description>{props.post.body}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Button as="div" title="Like" labelPosition="right" onClick={likePost}>
-          <Button color="red" basic>
-            <Icon name="heart" />
-          </Button>
-          <Label basic color="red" pointing="left">
-            {props.post.likes.length}
-          </Label>
-        </Button>
+        <LikeButton
+          postId={props.post.id}
+          username={context.user ? context.user.username : null}
+          likes={props.post.likes}
+        />
         <Button
           as="div"
           title="Post a comment"
           labelPosition="right"
-          onClick={commentPost}
+          as={Link}
+          to={`/posts/${props.post.id}`}
         >
           <Button color="teal" basic>
             <Icon name="comments" />
@@ -52,6 +49,15 @@ const PostCard = (props) => {
             {props.post.comments.length}
           </Label>
         </Button>
+        {context.user && context.user.username === props.post.username && (
+          <Icon
+            title="Delete Post"
+            style={{ float: "right", cursor: "pointer", marginTop: "10px" }}
+            onClick={() => console.log("del")}
+            color="red"
+            name="trash alternate"
+          />
+        )}
       </Card.Content>
     </Card>
   );

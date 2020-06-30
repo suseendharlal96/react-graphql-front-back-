@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
 import { AuthContext } from "../context/auth";
-import { useForm } from "../util/AuthHooks";
+import { useForm } from "../util/FormHooks";
 
 const Login = (props) => {
   const context = useContext(AuthContext);
@@ -18,7 +18,7 @@ const Login = (props) => {
   const [errors, setErrors] = useState({});
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    update(proxy, result) {
+    update(_, result) {
       console.log(result);
       context.login(result.data.signin);
       props.history.push("/");

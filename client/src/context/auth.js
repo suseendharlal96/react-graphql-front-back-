@@ -9,12 +9,14 @@ const AuthContext = createContext({
 const AuthReducer = (initState, action) => {
   switch (action.type) {
     case "LOGIN":
+      localStorage.setItem("jwtToken", action.userData.token);
       return {
         ...initState,
         user: action.userData,
       };
 
     case "LOGOUT":
+      localStorage.clear();
       return {
         ...initState,
         user: null,

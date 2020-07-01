@@ -64,12 +64,22 @@ module.exports = {
       }
       // make sure username doesnt exist already
       const user = await User.findOne({ username });
-      if (user) {
-        throw new UserInputError("Username already taken", {
-          errors: {
-            username: "Username already taken",
-          },
-        });
+      const useremail = await User.findOne({ email });
+      if (user || useremail) {
+        if (user) {
+          throw new UserInputError("Username already taken", {
+            errors: {
+              username: "Username already taken",
+            },
+          });
+        }
+        if (useremail) {
+          throw new UserInputError("Email already taken", {
+            errors: {
+              email: "Email already taken",
+            },
+          });
+        }
       }
       // attach a token after successful signup
       password = await bcrypt.hash(password, 12);

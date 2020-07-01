@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { Button, Icon, Label } from "semantic-ui-react";
+import { Button, Icon, Label, Popup } from "semantic-ui-react";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
@@ -40,23 +40,24 @@ const LikeButton = (props) => {
   );
 
   return (
-    <Button
-      as="div"
-      title={liked ? "Unlike" : "Like"}
-      labelPosition="right"
-      onClick={likeunlikePost}
-    >
-      {likeButton}
-      <Label basic color="red" pointing="left">
-        {liked
-          ? `Liked by you and ${props.likes.length - 1} ${
-              props.likes.length - 1 > 1 ? "others" : "other"
-            }`
-          : `${props.likes.length} ${
-              props.likes.length > 1 ? "likes" : "like"
-            }`}
-      </Label>
-    </Button>
+    <Popup
+      inverted
+      content={liked ? "Unlike" : "Like"}
+      trigger={
+        <Button as="div" labelPosition="right" onClick={likeunlikePost}>
+          {likeButton}
+          <Label basic color="red" pointing="left">
+            {liked
+              ? `Liked by you and ${props.likes.length - 1} ${
+                  props.likes.length - 1 > 1 ? "others" : "other"
+                }`
+              : `${props.likes.length} ${
+                  props.likes.length > 1 ? "likes" : "like"
+                }`}
+          </Label>
+        </Button>
+      }
+    />
   );
 };
 

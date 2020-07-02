@@ -62,7 +62,7 @@ module.exports = {
       if (!isValid) {
         throw new UserInputError("Errors", { errors });
       }
-      // make sure username doesnt exist already
+      // make sure username & email doesnt exist already
       const user = await User.findOne({ username });
       const useremail = await User.findOne({ email });
       if (user || useremail) {
